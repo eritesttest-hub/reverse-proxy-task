@@ -1,0 +1,14 @@
+# OS files
+*.swp
+*.tmp
+*.bak
+.DS_Store
+
+# Logs
+*.log
+
+# Docker
+*.tar
+docker-compose.override.yml
+.env
+
