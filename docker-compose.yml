@@ -1,0 +1,29 @@
+version: "3.9"
+
+services:
+  site1:
+    image: site1-image
+    container_name: site1
+    restart: always
+
+  site2:
+    image: site2-image
+    container_name: site2
+    restart: always
+
+  site3:
+    image: site3-image
+    container_name: site3
+    restart: always
+
+  proxy:
+    image: proxy-image
+    container_name: proxy
+    ports:
+      - "80:80"
+    depends_on:
+      - site1
+      - site2
+      - site3
+    restart: always
+
