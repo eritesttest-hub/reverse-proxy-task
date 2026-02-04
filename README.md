@@ -185,3 +185,88 @@ Purpose:
     centralized image storage
 
     portability across environments
+
+Docker Compose Setup
+
+Docker Compose is used to run all services together in a single network.
+
+docker-compose.yml
+version: "3.9"
+
+services:
+  site1:
+    image: eritest/site1-image:v1.0.0
+    container_name: site1
+    restart: always
+
+  site2:
+    image: eritest/site2-image:v1.0.0
+    container_name: site2
+    restart: always
+
+  site3:
+    image: eritest/site3-image:v1.0.0
+    container_name: site3
+    restart: always
+
+  proxy:
+    image: eritest/proxy-image:v1.0.0
+    container_name: proxy
+    ports:
+      - "80:80"
+    depends_on:
+      - site1
+      - site2
+      - site3
+    restart: always
+
+How to Run the Project
+1. Prerequisites
+
+Docker installed
+
+Docker Compose installed
+
+2. Start all services
+docker-compose up -d
+
+3. Access from browser
+
+http://localhost/site1
+
+http://localhost/site2
+
+http://localhost/site3
+
+4. Stop the project
+docker-compose down
+
+Docker Hub Images
+
+All images are published to Docker Hub:
+
+eritest/site1-image:v1.0.0
+
+eritest/site2-image:v1.0.0
+
+eritest/site3-image:v1.0.0
+
+eritest/proxy-image:v1.0.0
+
+This allows the project to be started without local builds.
+
+Key Concepts Learned
+
+Difference between images and containers
+
+Docker networking and DNS resolution
+
+Reverse proxy fundamentals
+
+Service orchestration with Docker Compose
+
+Versioning and tagging Docker images
+
+Publishing images to Docker Hub
+
+Maintaining project history with GitHub
